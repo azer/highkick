@@ -8,6 +8,9 @@ $ npm install highkick
 
 Usage Example
 =============
+To see HighKick in action, run "make test" command in the source code directory
+as below example;
+
 ```bash
 $ make test
 node test/run.js
