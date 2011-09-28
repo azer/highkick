@@ -82,5 +82,5 @@ Development
 ==========
 todo:
 
-    * make init & reset functions async
-    * browser support
+  * make init & reset functions async
+  * browser support
