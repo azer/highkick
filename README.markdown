@@ -81,5 +81,6 @@ That's all. See test/ dir for a usage example.
 Development
 ==========
 todo:
+
     * make init & reset functions async
     * browser support
