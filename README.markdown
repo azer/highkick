@@ -1,5 +1,7 @@
 Asynchronous, no-style, super simple testing tool for NodeJS.
 
+![Screenshot](https://github.com/downloads/azer/highkick/highkick.png)
+
 Install
 =======
 ```bash
