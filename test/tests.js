@@ -7,7 +7,7 @@ function init(){
 function test_foo(pi, callback){
   assert.equal(pi, 3.14);
   setTimeout(function(){
-    callback();     
+    callback();
   }, 10);
 }
 
