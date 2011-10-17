@@ -11,9 +11,12 @@ $ npm install highkick
 Usage Example
 =============
 To see HighKick in action, run "make test" command in the source code directory
-as below example;
+as the below example;
 
 ```bash
+$ git clone git@github.com:azer/highkick.git
+$ cd highkick
+$ npm install
 $ make test
 node test/run.js
 Running "test_foo" ...
