@@ -84,6 +84,8 @@ $ node run.js
 
 That's all. See test/ dir for a usage example.
 
-Development
-==========
-status: stable
+More Examples
+=============
+I use HighKick in my OneJS project heavily. You may take a look at its tests;
+
+https://github.com/azer/onejs/tree/master/test
