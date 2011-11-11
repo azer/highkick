@@ -53,8 +53,8 @@ as seen below;
 
 ```javascript
 // tests.js
-function init(){
-  return +(new Date);
+function init(options, callback){
+  callback(null, +(new Date));
 }
 
 function test_corge(date, callback){
@@ -73,7 +73,8 @@ highkick({ 'module':require('./tests') }, function(error, result){
 ```
 
 "silent" and "name" are the remaining options that can be given optionally.
-Time to kick the tests;
+
+Now you can kick the tests;
 ```bash
 $ node run.js
 ```
@@ -82,7 +83,4 @@ That's all. See test/ dir for a usage example.
 
 Development
 ==========
-todo:
-
-  * make init & reset functions async
-  * browser support
+status: stable
