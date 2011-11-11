@@ -2,12 +2,6 @@ Asynchronous, no-style, super simple testing tool for NodeJS.
 
 ![Screenshot](https://github.com/downloads/azer/highkick/highkick.png)
 
-Install
-=======
-```bash
-$ npm install highkick
-```
-
 Motivation
 ==========
 * **No sphagetti:** The tests coded for HighKick seem very simple, apparent and familiar.
