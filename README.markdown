@@ -24,7 +24,9 @@ Code your tests in a separated module;
 
 ```javascript
 
-//tests.js
+// tests.js
+
+var assert = require('assert'); // highkick doesn't provide a new assertion library. NodeJS has a good one already.
 
 exports.test_foo = function(callback){
   setTimeout(function(){
@@ -48,9 +50,9 @@ exports.test_bar = function(callback){
 
 You can optionally add an *init function* that will be called before each test. 
 
-*An init function* takes two arguments, first one is the options of the test, and second one is the callback that should be called. 
+*An init function* takes two arguments, first one is the options of the test, and second one is the callback that will fire the pending test.
 
-What a init function returns is passed to the test functions as first arguments. See the below example;
+Init functions may pass any number of parameters to the test functions. See the below example;
 
 ```javascript
 
