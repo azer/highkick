@@ -20,7 +20,7 @@ function test_sync(pi, callback){
 }
 
 function test_nested(test, callback){
-  highkick({ module:require('./test_nested'), 'silent':false, 'name':'  nested', foo:true },function(error,result){
+  highkick({ module:require('./test_nested'), 'silent':false, 'name':'nested', foo:true },function(error,result){
     !error && result.len == 0 && (error = new Error('Missing test functions.'));
     if(error) return callback(error);
     callback(result.fail ? new Error('Fail') : undefined);
