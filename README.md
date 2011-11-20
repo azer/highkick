@@ -67,7 +67,7 @@ exports.test_corge = function test_corge(date, randomNumber, callback){
 ```
 
 
-You may be wondering about the ```options``` variable that is passed to the init function (if you've defined one). 
+You may be curious about the ```options``` variable passed to the init function (if you've defined one). 
 You pass the ```options``` object to the highkick function itself, to run the tests.
 
 In the below example, I create a new module and call HighKick, passing the tests module I've coded above.
@@ -86,7 +86,7 @@ highkick({ 'module':require('./tests'), 'name':'main tests', 'silent':false }, f
 
 ```
 
-Only required option field is ```module```, feel free to skip ```name``` and ```silent`` fields if you dont need.
+Only required option field is ```module```, see the *Available Options* section for details. feel free to skip ```name``` and ```silent`` fields if you dont need.
 
 Let's call the module above;
 
@@ -95,6 +95,13 @@ $ node run.js
 ```
 
 That's all. See test/ dir for a basic usage example.
+
+Available Options
+=================
+**module** Passes the module that contains the tests. Required. 
+**name** A name that'll be seen as a prefix of the messages produced by the related tests.
+**silent** Keeps the tests silent. 
+**ordered** Each test waits its previous sibling to produce a result by running its callback.
 
 More Examples
 =============
