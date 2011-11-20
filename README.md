@@ -98,9 +98,13 @@ That's all. See test/ dir for a basic usage example.
 
 Available Options
 =================
+
 **module** Passes the module that contains the tests. Required. 
+
 **name** A name that'll be seen as a prefix of the messages produced by the related tests.
+
 **silent** Keeps the tests silent. 
+
 **ordered** Each test waits its previous sibling to produce a result by running its callback.
 
 More Examples
