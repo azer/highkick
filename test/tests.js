@@ -7,7 +7,7 @@ function init(options, callback){
   callback(null, 3.14);
 }
 
-function test_async_1(pi, callback){
+function testAsync1(pi, callback){
   assert.equal(++counter, 1);
   assert.equal(pi, 3.14);
   setTimeout(function(){
@@ -16,7 +16,7 @@ function test_async_1(pi, callback){
   }, 300);
 }
 
-function test_async_2(pi, callback){
+function testAsync2(pi, callback){
   assert.equal(++counter, 2);
   assert.equal(pi, 3.14);
   setTimeout(function(){
@@ -25,13 +25,13 @@ function test_async_2(pi, callback){
   }, 50);
 }
 
-function test_sync(pi, callback){
+function testSync(pi, callback){
   assert.equal(++counter, 3);
   assert.equal(pi, 3.14);
   callback();
 }
 
-function test_nested(test, callback){
+function testNested(test, callback){
   assert.equal(++counter, 4);
   highkick({ module:require('./test_nested'), 'silent':false, 'name':'nested', foo:true },function(error,result){
     !error && result.len == 0 && (error = new Error('Missing test functions.'));
@@ -40,7 +40,7 @@ function test_nested(test, callback){
   });  
 }
 
-function test_ordered(test, callback){
+function testOrdered(test, callback){
   assert.equal(++counter, 5);
   highkick({ module:require('./test_ordered'), 'ordered':true, 'name':'ordered' },function(error,result){
     !error && result.len == 0 && (error = new Error('Missing test functions.'));
@@ -51,9 +51,9 @@ function test_ordered(test, callback){
 
 module.exports = {
   'init':init,
-  'test_async_1':test_async_1,
-  'test_async_2':test_async_2,
-  'test_sync':test_sync,
-  'test_nested':test_nested,
-  'test_ordered':test_ordered
+  'testAsync1':testAsync1,
+  'testAsync2':testAsync2,
+  'testSync':testSync,
+  'testNested':testNested,
+  'testOrdered':testOrdered
 }

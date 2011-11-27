@@ -20,7 +20,7 @@ $ make test
 
 Introduction
 ============
-Code your tests in a separated module;
+Code your tests in a separated module, naming them starting with "test":
 
 ```javascript
 
@@ -28,7 +28,7 @@ Code your tests in a separated module;
 
 var assert = require('assert'); // highkick doesn't provide a new assertion library. NodeJS has a good one already.
 
-exports.test_foo = function(callback){
+exports.testFoo = function(callback){
   setTimeout(function(){
     try {
       do();
@@ -41,12 +41,11 @@ exports.test_foo = function(callback){
   }, 1000);
 }
 
-exports.test_bar = function(callback){
+exports.testBar = function(callback){
   callback();
 }
 
 ```
-
 
 You can optionally add an *init function* that will be called before each test. 
 
@@ -60,12 +59,11 @@ exports.init = function init(options, callback){
   callback(null, +(new Date), Math.random());
 }
 
-exports.test_corge = function test_corge(date, randomNumber, callback){
+exports.testCorge = function(date, randomNumber, callback){
   callback();
 }
 
 ```
-
 
 You may be curious about the ```options``` variable passed to the init function (if you've defined one). 
 You pass the ```options``` object to the highkick function itself, to run the tests.
