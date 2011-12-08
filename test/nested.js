@@ -6,7 +6,7 @@ function init(options, callback){
 }
 
 function test_options(options, callback){
-  assert.equal(options.silent, false);
+  assert.equal(options.name, 'nested');
   assert.ok(options.foo);
   callback();
 }

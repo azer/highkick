@@ -9,5 +9,8 @@
   "dependencies":{
     "colors":"0.x"
   },
-  "repository": { "type":"git",  "url" : "http://github.com/azer/highkick.git" }
+  "repository": { "type":"git",  "url" : "http://github.com/azer/highkick.git" },
+  "scripts": {
+    "test": "node test/run.js"
+  }
 }

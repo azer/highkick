@@ -33,7 +33,7 @@ function testSync(pi, callback){
 
 function testNested(test, callback){
   assert.equal(++counter, 4);
-  highkick({ module:require('./test_nested'), 'silent':false, 'name':'nested', foo:true },function(error,result){
+  highkick({ module:require('./nested'), 'silent':true, 'name':'nested', foo:true },function(error,result){
     !error && result.len == 0 && (error = new Error('Missing test functions.'));
     if(error) return callback(error);
     callback(result.fail ? new Error('Fail') : undefined);
@@ -42,7 +42,7 @@ function testNested(test, callback){
 
 function testOrdered(test, callback){
   assert.equal(++counter, 5);
-  highkick({ module:require('./test_ordered'), 'ordered':true, 'name':'ordered' },function(error,result){
+  highkick({ module:require('./ordered'), 'silent':true, 'ordered':true, 'name':'ordered' },function(error,result){
     !error && result.len == 0 && (error = new Error('Missing test functions.'));
     if(error) return callback(error);
     callback(result.fail ? new Error('Fail') : undefined);
