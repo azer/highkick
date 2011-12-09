@@ -7,6 +7,20 @@ function init(options, callback){
   callback(null, 3.14);
 }
 
+function testFail(pi, callback){
+  highkick({ module:require('./fail'), 'silent':true, 'name':'fail' }, function(error, result){
+    assert.equal(result.fail, 2);
+    callback();
+  });
+}
+
+function testOrderedFail(pi, callback){
+  highkick({ module:require('./fail'), 'ordered':true, 'silent':true, 'name':'ordered fail' }, function(error, result){
+    assert.equal(result.fail, 2);
+    callback();
+  });
+}
+
 function testAsync1(pi, callback){
   assert.equal(++counter, 1);
   assert.equal(pi, 3.14);
@@ -42,7 +56,7 @@ function testNested(test, callback){
 
 function testOrdered(test, callback){
   assert.equal(++counter, 5);
-  highkick({ module:require('./ordered'), 'silent':true, 'ordered':true, 'name':'ordered' },function(error,result){
+  highkick({ module:require('./ordered'), 'silent':false, 'ordered':true, 'name':'ordered' },function(error,result){
     !error && result.len == 0 && (error = new Error('Missing test functions.'));
     if(error) return callback(error);
     callback(result.fail ? new Error('Fail') : undefined);
@@ -53,7 +67,9 @@ module.exports = {
   'init':init,
   'testAsync1':testAsync1,
   'testAsync2':testAsync2,
-  'testSync':testSync,
-  'testNested':testNested,
-  'testOrdered':testOrdered
+  'testSync': testSync,
+  'testFail': testFail,
+  'testNested': testNested,
+  'testOrdered': testOrdered,
+  'testOrderedFail': testOrderedFail
 }
