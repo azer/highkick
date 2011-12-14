@@ -1,4 +1,4 @@
-module.exports.testError = function fail(callback){
+module.exports.testError = function testError(callback){
   callback(new Error('error'));
 }
 

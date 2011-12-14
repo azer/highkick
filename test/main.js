@@ -3,8 +3,26 @@ var assert = require('assert'),
 
 var counter = 0;
 
+function cleanRequireCache(){
+  var filename;
+  for(filename in require.cache){
+    delete require.cache[filename];
+  }
+}
+
 function init(options, callback){
+  cleanRequireCache();
   callback(null, 3.14);
+}
+
+function testSimple(pi, callback){
+  callback();
+}
+
+function testSimpleAsync(pi, callback){
+  setTimeout(function(){
+    callback();
+  }, 100);
 }
 
 function testFail(pi, callback){
@@ -34,8 +52,12 @@ function testAsync2(pi, callback){
   assert.equal(++counter, 2);
   assert.equal(pi, 3.14);
   setTimeout(function(){
-    assert.equal(++counter, 6);
-    callback();
+    try {
+      assert.equal(++counter, 6);
+      callback();
+    } catch(err){
+      callback(err);
+    }
   }, 50);
 }
 
@@ -56,7 +78,7 @@ function testNested(test, callback){
 
 function testOrdered(test, callback){
   assert.equal(++counter, 5);
-  highkick({ module:require('./ordered'), 'silent':false, 'ordered':true, 'name':'ordered' },function(error,result){
+  highkick({ module:require('./ordered'), 'silent':true, 'ordered':true, 'name':'ordered' },function(error,result){
     !error && result.len == 0 && (error = new Error('Missing test functions.'));
     if(error) return callback(error);
     callback(result.fail ? new Error('Fail') : undefined);
@@ -64,8 +86,10 @@ function testOrdered(test, callback){
 }
 
 module.exports = {
-  'init':init,
-  'testAsync1':testAsync1,
+  'init': init,
+  'testSimple': testSimple,
+  'testSimpleAsync': testSimpleAsync,
+  'testAsync1': testAsync1,
   'testAsync2':testAsync2,
   'testSync': testSync,
   'testFail': testFail,
