@@ -1,6 +1,20 @@
 var highkick = require('../lib/highkick'),
-    puts = require('sys').puts;
+    mkdir  = require('fs').mkdir;
 
-highkick({ 'name':' basic', 'module':require('./main') }, function(error, result){
-  if(error) throw error;
-});
+function clean(callback){
+  mkdir('tmp', 0755, function(){
+    callback();
+  });
+}
+
+function run(){
+  clean(function(){
+
+    highkick({ 'name':' basic', 'module':require('./main') }, function(error, result){
+      if(error) throw error;
+    });
+
+  });
+}
+
+run();

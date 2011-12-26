@@ -15,6 +15,13 @@ function init(options, callback){
   callback(null, 3.14);
 }
 
+function testInitFail(pi, callback){
+  highkick({ module:require('./init_fail'), 'silent':0, 'name':'init_fail' }, function(error, result){
+    assert.ok(error);
+    callback();
+  });
+}
+
 function testSimple(pi, callback){
   callback();
 }
@@ -38,6 +45,8 @@ function testOrderedFail(pi, callback){
     callback();
   });
 }
+
+
 
 function testAsync1(pi, callback){
   assert.equal(++counter, 1);
@@ -87,6 +96,7 @@ function testOrdered(test, callback){
 
 module.exports = {
   'init': init,
+  'testInitFail': testInitFail,
   'testSimple': testSimple,
   'testSimpleAsync': testSimpleAsync,
   'testAsync1': testAsync1,
