@@ -5,13 +5,12 @@ function init(options, callback){
   callback(null, options);
 }
 
-function test_options(options, callback){
+function testOptions(options, callback){
   assert.equal(options.name, 'nested');
-  assert.ok(options.foo);
   callback();
 }
 
 module.exports = {
   'init':init,
-  'test_options':test_options
+  'testOptions':testOptions
 };

@@ -1,109 +1,62 @@
 var assert = require('assert'),
     highkick = require('../lib/highkick');
 
-var counter = 0;
+var testNested = highkick('./nested'),
+    testParams = highkick('./params'),
+    testAsync  = highkick({ 'path': './async', 'async': true });
 
-function cleanRequireCache(){
-  var filename;
-  for(filename in require.cache){
-    delete require.cache[filename];
-  }
-}
+var i = 0;
 
-function init(options, callback){
-  cleanRequireCache();
-  callback(null, 3.14);
-}
-
-function testInitFail(pi, callback){
-  highkick({ module:require('./init_fail'), 'silent':0, 'name':'init_fail' }, function(error, result){
+function testInitFail(callback){
+  highkick('./init_fail', function(error, result){
+    assert.equal(i++, 0);
     assert.ok(error);
     callback();
   });
 }
 
-function testSimple(pi, callback){
-  callback();
-}
-
-function testSimpleAsync(pi, callback){
+function testSimpleAsync(callback){
   setTimeout(function(){
+    assert.equal(i++, 1);
     callback();
   }, 100);
 }
 
-function testFail(pi, callback){
-  highkick({ module:require('./fail'), 'silent':true, 'name':'fail' }, function(error, result){
+function testFail(callback){
+  highkick('./fail', function(error, result){
+    assert.equal(i++, 2);
     assert.equal(result.fail, 2);
     callback();
   });
 }
 
-function testOrderedFail(pi, callback){
-  highkick({ module:require('./fail'), 'ordered':true, 'silent':true, 'name':'ordered fail' }, function(error, result){
-    assert.equal(result.fail, 2);
-    callback();
-  });
-}
+function testIsEnabled(callback){
+  var isEnabled = highkick.isEnabled;
 
+  assert.ok(!isEnabled('foo'));
 
+  assert.ok(isEnabled('foo', '*'));
 
-function testAsync1(pi, callback){
-  assert.equal(++counter, 1);
-  assert.equal(pi, 3.14);
-  setTimeout(function(){
-    assert.equal(++counter, 7);
-    callback();
-  }, 300);
-}
+  assert.ok(isEnabled('foo', 'foo'));
 
-function testAsync2(pi, callback){
-  assert.equal(++counter, 2);
-  assert.equal(pi, 3.14);
-  setTimeout(function(){
-    try {
-      assert.equal(++counter, 6);
-      callback();
-    } catch(err){
-      callback(err);
-    }
-  }, 50);
-}
+  assert.ok(isEnabled('testFoo', 'foo'));
 
-function testSync(pi, callback){
-  assert.equal(++counter, 3);
-  assert.equal(pi, 3.14);
+  assert.ok(isEnabled('test_foo', 'foo'));
+
+  assert.ok(!isEnabled('bar', 'foo'));
+
+  assert.ok(isEnabled('bar', 'foo,bar'));
+
+  assert.equal(i++, 3);
   callback();
 }
 
-function testNested(test, callback){
-  assert.equal(++counter, 4);
-  highkick({ module:require('./nested'), 'silent':true, 'name':'nested', foo:true },function(error,result){
-    !error && result.len == 0 && (error = new Error('Missing test functions.'));
-    if(error) return callback(error);
-    callback(result.fail ? new Error('Fail') : undefined);
-  });  
-}
-
-function testOrdered(test, callback){
-  assert.equal(++counter, 5);
-  highkick({ module:require('./ordered'), 'silent':true, 'ordered':true, 'name':'ordered' },function(error,result){
-    !error && result.len == 0 && (error = new Error('Missing test functions.'));
-    if(error) return callback(error);
-    callback(result.fail ? new Error('Fail') : undefined);
-  });  
-}
-
 module.exports = {
-  'init': init,
   'testInitFail': testInitFail,
-  'testSimple': testSimple,
   'testSimpleAsync': testSimpleAsync,
-  'testAsync1': testAsync1,
-  'testAsync2':testAsync2,
-  'testSync': testSync,
   'testFail': testFail,
   'testNested': testNested,
-  'testOrdered': testOrdered,
-  'testOrderedFail': testOrderedFail
+  'testParams': testParams,
+  'testIsEnabled': testIsEnabled,
+  'testAsync': testAsync
 }

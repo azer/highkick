@@ -1,0 +1,44 @@
+#!/usr/bin/env node
+
+var REV        = '1.5.0',
+
+    path       = require('path'),
+    puts       = require('util').puts,
+    opt        = require('optimist'),
+
+    highkick   = require('../lib/highkick'),
+    testModule = highkick.testModule,
+    color      = highkick.color,
+
+    argv     = opt
+      .options('async', {})
+      .argv,
+
+    filename = argv._[0];
+
+var HELP = ['usage: highkick [module]'
+          , ''
+          , 'Asynchronous, no-style testing tool for all JavaScript platforms.'
+          , ''
+          , 'options:'
+          , '  --async      Run asynchronously.'
+          , '  --version    Show version and exit.'
+          , '  --help       Show help.'
+          , ''].join('\n');
+
+function help(){
+  puts(HELP);
+  process.exit(0);
+}
+
+function version(){
+  puts('HighKick v' + REV);
+  process.exit(0);
+}
+
+if(filename){
+  highkick({ 'name': filename.replace(/.*\//,'').replace(/\.js$/,''), 'path': path.join(process.cwd(),filename), 'silent': false, 'async': argv.async }, function(error, result){
+  });
+} else {
+  help();
+}

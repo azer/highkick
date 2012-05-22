@@ -1,3 +1,4 @@
+
 var highkick = require('../lib/highkick'),
     mkdir  = require('fs').mkdir;
 
@@ -10,7 +11,7 @@ function clean(callback){
 function run(){
   clean(function(){
 
-    highkick({ 'name':' basic', 'module':require('./main') }, function(error, result){
+    highkick({ 'name':' basic', 'module':require('./main'), 'silent': false }, function(error, result){
       if(error) throw error;
     });
 
