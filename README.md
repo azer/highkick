@@ -80,14 +80,14 @@ Similar to the `init` functions, what a `beforeEach` function produces is passed
 
 ```javascript
 exports.init = function(options, callback){
-    callback(undefined, +(new Date));
+    callback(undefined, 'hello');
 }
 
-exports.beforeEach = function(testStartTime, callback){
-    callback(undefined, +(new Date));
+exports.beforeEach = function(hello, callback){
+    callback(undefined, 'world';
 }
 
-exports.testFoo = function(testStartTime, now, callback){
+exports.testFoo = function(hello, world, callback){
     ...
 }
 ```
