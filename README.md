@@ -31,21 +31,19 @@ exports.testBar = function(callback){
 
 ```
 
-## Running Tests
-
-To run the tests on command-line;
+Below command will run the all tests defined in tests.js;
 
 ```bash
 $ highkick tests.js
 ```
 
-HighKick lets us filter the tests that we want to run;
+To specify the tests that needs to run;
 
 ```bash
 $ KICK=foo highkick tests.js
 ```
 
-The command above will only run testFoo. Use comma for separating multiple test names, and '*' for running all tests.
+se comma for separating multiple test names, and '*' for running all tests.
 
 ## Init
 
