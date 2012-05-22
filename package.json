@@ -1,11 +1,14 @@
 {
   "name":"highkick",
-  "version":"1.5.0",
+  "version":"1.5.1",
   "description":"Asynchronous, no-style, super simple testing tool.",
   "author":"Azer Koculu <azer@kodfabrik.com>",
   "keywords":["testing", "test"],
   "directories":{ "lib": "./lib" },
   "main":"./lib/highkick.js",
+  "bin":{
+    "highkick":"./bin/highkick"
+  },
   "dependencies":{
     "colors":"0.x"
   },
