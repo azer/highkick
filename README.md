@@ -8,6 +8,64 @@ HighKick is a no-style, light-weight and powerful testing tool for NodeJS.
 $ npm install highkick
 ```
 
+# Overview
+
+CoffeeScript:
+```coffeescript
+init = (options, callback) ->
+    startWebServer callback
+  
+testFoo = (callback) ->
+    get "http://localhost/api/foo", (error, response) ->
+        if error
+            callback error
+            return
+        
+        assert.equal response.foo 'foo'
+        callback()
+        
+end = (callback) ->
+    stopWebServer callback
+
+module.exports = 
+    init: init
+    testFoo: testFoo
+    end: end
+```
+
+JavaScript:
+
+```javascript
+
+function init(options, callback){
+    startWebServer(callback);
+}
+
+function testFoo(callback){
+    get('http://localhost/api/foo', function(error, response){
+        if(error){
+            callback(error);
+            return;
+        }
+        
+        assert.equal(response.foo, 'foo')
+        
+        callback();
+    });
+}
+
+function end(callback){
+    stopWebServer(callback);
+}
+
+module.exports = {
+    'init': init,
+    'testFoo': testFoo,
+    'end': end
+};
+
+```
+
 # First Steps
 
 HighKick takes a module and executes the functions that have a name starting with "test". A simple test module would look like this;
