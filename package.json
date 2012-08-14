@@ -1,6 +1,6 @@
 {
   "name":"highkick",
-  "version":"1.5.4",
+  "version":"1.6.0",
   "description":"Asynchronous, no-style, super simple testing tool.",
   "author":"Azer Koculu <azer@kodfabrik.com>",
   "keywords":["testing", "test"],
