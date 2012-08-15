@@ -1,6 +1,9 @@
 HighKick is a no-style, light-weight and powerful testing tool for NodeJS.
 
-![Screenshot](https://github.com/downloads/azer/highkick/highkick1.5.png)
+**Screenshots:**
+
+![Screenshot 1](https://dl.dropbox.com/s/xzuwm660jqzd1vw/highkick_1.png)
+![Screenshot 2](https://dl.dropbox.com/s/wjsxpt57gcwlbqb/highkick_2.png)
 
 # Installation
 
