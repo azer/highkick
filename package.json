@@ -1,6 +1,6 @@
 {
   "name":"highkick",
-  "version":"1.6.0",
+  "version":"1.6.1",
   "description":"Asynchronous, no-style, super simple testing tool.",
   "author":"Azer Koculu <azer@kodfabrik.com>",
   "keywords":["testing", "test"],
@@ -10,7 +10,7 @@
     "highkick":"./bin/highkick"
   },
   "dependencies":{
-    "colors":"0.x",
+    "style":"0.1.x",
     "optimist":"0.x"
   },
   "repository": { "type":"git",  "url" : "http://github.com/azer/highkick.git" },
