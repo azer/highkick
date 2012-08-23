@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/azer/highkick.png)](http://travis-ci.org/azer/highkick)
 HighKick is a no-style, light-weight and powerful testing tool for NodeJS.
 
 **Screenshots:**
