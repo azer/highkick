@@ -43,8 +43,7 @@ if(filename){
     'path': path.join(process.cwd(),filename),
     'silent': false,
     'async': argv.async
-  }, function(error, result){}
-);
+  }, function(error, result){});
 } else {
   help();
 }
