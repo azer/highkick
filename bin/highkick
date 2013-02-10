@@ -6,7 +6,7 @@ var REV        = '1.5.0',
     puts       = require('util').puts,
     opt        = require('optimist'),
 
-    highkick   = require('../lib/highkick'),
+    highkick   = require('../lib'),
     testModule = highkick.testModule,
     color      = highkick.color,
 

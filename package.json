@@ -5,7 +5,7 @@
   "author":"Azer Koculu <azer@kodfabrik.com>",
   "keywords":["testing", "test"],
   "directories":{ "lib": "./lib" },
-  "main":"./lib/highkick.js",
+  "main":"./lib/index.js",
   "bin":{
     "highkick":"./bin/highkick"
   },

@@ -1,5 +1,5 @@
 var assert = require('assert'),
-    highkick = require('../lib/highkick');
+    highkick = require('../lib');
 
 var testNested = highkick('./nested'),
     testParams = highkick('./params'),
@@ -31,7 +31,7 @@ function testFail(callback){
 }
 
 function testIsEnabled(callback){
-  var isEnabled = highkick.isEnabled;
+  var isEnabled = require('../lib/is-enabled');
 
   assert.ok(!isEnabled('foo'));
 
