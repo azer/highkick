@@ -171,20 +171,12 @@ exports.end = function(process, callback){
 }
 ```
 
-## Nested Tests a.k.a Programmatic Way of Running Tests
+## Nested Tests
 
 HighKick provides a very minimalistic concept of nested tests;
 
 ```javascript
-var highkick = require('highkick');
-
 exports.testFoobar = highkick('./foobar');
-```
-
-To see the output of child tests;
-
-```bash
-$ VERBOSE=foobar highkick tests.js
 ```
 
 You can use comma for separating multiple test names and pass '*' for enabling output for child tests.
