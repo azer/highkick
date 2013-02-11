@@ -1,10 +1,10 @@
 HighKick is a NodeJS testing tool that I like.
 
-# Installation
-
 ```bash
 $ npm install highkick
 ```
+
+![](http://farm6.staticflickr.com/5302/5625088762_355af8f69a.jpg)
 
 # Overview
 
