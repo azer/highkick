@@ -1,4 +1,4 @@
-HighKick is a NodeJS testing tool that I like.
+HighKick is a small NodeJS testing framework that I like.
 
 ```bash
 $ npm install highkick
