@@ -1,9 +1,4 @@
-HighKick is a no-style, light-weight and powerful testing tool for NodeJS.
-
-**Screenshots:**
-
-![Screenshot 1](https://dl.dropbox.com/s/xzuwm660jqzd1vw/highkick_1.png)
-![Screenshot 2](https://dl.dropbox.com/s/wjsxpt57gcwlbqb/highkick_2.png)
+HighKick is a NodeJS testing tool that I like.
 
 # Installation
 
@@ -13,38 +8,28 @@ $ npm install highkick
 
 # Overview
 
-CoffeeScript:
-```coffeescript
-init = (options, callback) ->
-    startWebServer callback
-  
-testFoo = (callback) ->
-    get "http://localhost/api/foo", (error, response) ->
-        if error
-            callback error
-            return
-        
-        assert.equal response.foo 'foo'
-        callback()
-        
-end = (callback) ->
-    stopWebServer callback
+It enables [ChaiJS'](http://chaijs.com/) `assert` and `expect` modules by default.
 
-module.exports = 
-    init: init
-    testFoo: testFoo
-    end: end
+BDD: 
+```js
+describe('Array', function(){
+  describe('#indexOf()', function(){
+    it('should return -1 when the value is not present', function(){
+      assert.equal(-1, [1,2,3].indexOf(5));
+      expect([1,2,3].indexOf(0).to.be(5));
+    })
+  })
+})
 ```
 
-JavaScript:
-
+CommonJS:
 ```javascript
 
-function init(options, callback){
+exports.init = function init(options, callback){
     startWebServer(callback);
 }
 
-function testFoo(callback){
+exports.testFoo = function testFoo(callback){
     get('http://localhost/api/foo', function(error, response){
         if(error){
             callback(error);
@@ -57,15 +42,9 @@ function testFoo(callback){
     });
 }
 
-function end(callback){
+exports.end = function end(callback){
     stopWebServer(callback);
 }
-
-module.exports = {
-    'init': init,
-    'testFoo': testFoo,
-    'end': end
-};
 
 ```
 
@@ -101,18 +80,19 @@ $ highkick tests.js
 To specify the tests that needs to run;
 
 ```bash
-$ KICK=foo highkick tests.js
+$ kick=foo highkick tests.js
 ```
 
 se comma for separating multiple test names, and '*' for running all tests.
 
-## Init
+## Before
 
 An init function is called before the execution of the tests in a module for once. Init functions take an `options` object from HighKick and are able to
 produce the first parameters of test functions as shown in the example below;
 
+CommonJS: 
 ```javascript
-function init(options, callback){
+exports.before = function before(options, callback){
     callback( undefined, +(new Date), Math.PI );
 }
 
@@ -172,12 +152,12 @@ exports.afterEach = function(process, callback){
 }
 ```
 
-## end
+## after
 
 Unlikely to `afterEach`, an `end` function is called after all tests are done.
 
 ```javascript
-exports.init = function(callback){
+exports.after = function(callback){
     callback(undefined, new ChildProcess);
 }
 
@@ -221,28 +201,3 @@ highkick('./tests', function(error, result){
     logging.info('Ran %d tests successfully, without any error.', result.len);
 });
 ```
-
-## Async Running
-
-Pass `--async` option to run the tests asynchronously;
-
-```bash
-$ highkick tests.js --async
-```
-
-In the case you need the programmatic way;
-
-```
-var highkick = require('highkick');
-
-highkick({ 'path': './tests', 'async': true }, function(error, result){
-    ...
-});
-```
-
-# Projects Using HighKick
-
-  * [OneJS](http://github.com/azer/onejs)
-  * [LowKick](http://github.com/azer/lowkick)
-  * [boxcars](http://github.com/azer/boxcars)
-  * [stonetunnel](http://github.com/azer/stonetunnel)
