@@ -1,5 +1,3 @@
-var assert = require('assert');
-
 function init(options, callback){
   callback(null, options);
 }

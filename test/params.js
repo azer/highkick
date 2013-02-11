@@ -1,5 +1,4 @@
-var assert = require('assert'),
-    i = 0;
+var i = 0;
 
 function init(options, callback){
   assert.equal(i++, 0);
