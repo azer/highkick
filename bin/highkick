@@ -2,6 +2,7 @@
 
 var REV        = '1.5.0',
 
+    fs = require('fs'),
     path       = require('path'),
     puts       = require('util').puts,
     opt        = require('optimist'),
@@ -36,14 +37,15 @@ function version(){
   process.exit(0);
 }
 
-if(filename){
-  process.stdout.write('\u001B[2J\u001B[0;0f');
-  highkick({
-    'main': true,
-    'name': filename.replace(/.*\//,'').replace(/\.js$/,''),
-    'path': path.join(process.cwd(),filename),
-    'silent': false
-  }, function(error, result){});
-} else {
-  help();
-}
+!filename && fs.existsSync('./test.js') && (filename = 'test.js');
+!filename && fs.existsSync('./test/index.js') && (filename = 'test/index.js');
+if(!filename) return;
+
+process.stdout.write('\u001B[2J\u001B[0;0f');
+
+highkick({
+  'main': true,
+  'name': filename.replace(/.*\//,'').replace(/\.js$/,''),
+  'path': path.join(process.cwd(),filename),
+  'silent': false
+}, function(error, result){});
